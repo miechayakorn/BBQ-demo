@@ -44,6 +44,7 @@
 }
 #icon {
   padding: 30px;
+  
 }
 #nav {
   padding-bottom: 30px;

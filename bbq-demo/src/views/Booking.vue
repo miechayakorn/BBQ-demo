@@ -1,9 +1,10 @@
 <template>
   <div class="container mb-3">
     <div class="form-group">
-      <label for="exampleInputEmail1"
-        >เลือกบริการ <span style="color:red">*</span></label
-      >
+      <label for="exampleInputEmail1">
+        เลือกบริการ
+        <span style="color:red">*</span>
+      </label>
       <div class="form">
         <div
           style="background-color: #99A3FF;
@@ -30,56 +31,50 @@
         </div>
       </div>
     </div>
-    <div class="form-group">
-      <label for="exampleInputPassword1"
-        >เลือกวัน <span style="color:red">*</span></label
-      >
-      <a-date-picker
-        class="form-control"
-        style="border: none;"
-        @change="onChangeDate"
-      />
+    <div class="form-group text-left">
+      <label for="exampleInputPassword1">
+        เลือกวัน
+        <span style="color:red">*</span>
+      </label>
+      <a-date-picker class="form-control" style="border: none; " @change="onChangeDate" />
     </div>
-    <div class="form-group">
-      <label for="exampleInputPassword1"
-        >เลือกเวลา <span style="color:red">*</span></label
-      >
+    <div class="form-group ">
+      <label for="exampleInputPassword1" class="d-flex justify-content-start">
+        เลือกเวลา
+        <span style="color:red">*</span>
+      </label>
       <div
         v-if="this.dataDate == null"
         class="alert alert-warning"
         role="alert"
-      >
-        กรุณาเลือกวันให้เรียบร้อยก่อน
-      </div>
-      <div v-if="this.dataDate != null">
-        <button
-          href="#"
-          v-for="(timeLoop, index) in dataTimes.times"
-          :key="index"
-          :class="[
+      >กรุณาเลือกวันให้เรียบร้อยก่อน</div>
+      <div v-if="this.dataDate != null ">
+        <span v-for="(timeLoop, index) in dataTimes.times"
+            :key="index">
+          <button
+            href="#"
+            v-if="timeLoop.status==true"
+            :class="[
             timeLoop.status
               ? 'btn btn-outline-primary m-1'
-              : 'btn btn-secondary m-1 disabled',
+              : 'btn btn-secondary m-1 hidden ',
             { active: activeBtn === 'btn' + index }
           ]"
-          @click="
+            @click="
             [
               timeLoop.status ? onChangeTime(timeLoop.time) : '',
               (activeBtn = 'btn' + index)
             ]
           "
-        >
-          {{ timeLoop.time }}
-        </button>
+          >{{ timeLoop.time }}</button>
+        </span>
       </div>
     </div>
-    <div class="form-group">
-      <label for="exampleInputPassword1">อาการ</label>
+    <div class="form-group ">
+      <label for="exampleInputPassword1"  class="d-flex justify-content-start">อาการ</label>
       <textarea rows="3" class="form-control" v-model="symptom"></textarea>
     </div>
-    <button @click="sendToBackend" class="btn btn-primary btn-block">
-      Confirm
-    </button>
+    <button @click="sendToBackend" class="btn btn-primary btn-block btnConfirm mt-5">Confirm</button>
   </div>
 </template>
 <script>
@@ -100,9 +95,11 @@ export default {
           { time: "11.45", status: true },
           { time: "12.00", status: true }
         ]
-      }
+      },
+      dateTimes2:[]
     };
   },
+  
   methods: {
     onChangeDate(date, dateString) {
       this.dataDate = dateString;
@@ -139,6 +136,13 @@ export default {
 };
 </script>
 <style scoped>
+
+button{
+  border-radius: 8px;
+}
+.btnConfirm{
+  border-radius: 31px;
+}
 /*
 .btn-outline-primary,
 .btn-outline-primary:active {
