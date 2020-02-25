@@ -18,13 +18,13 @@ export default {
   },
   data() {
     return {
-      array: [
-        { type: "จิตแพทย์", date: "18 เมษายน 2563", time: "13.30" },
-        { type: "จิตแพทย์", date: "20 เมษายน 2563", time: "10.30" },
-        { type: "จิตวิทยา", date: "30 เมษายน 2563", time: "8.30" }
-      ]
+      array: []
     };
-  }
+  },
+  mounted() {
+    const appointment = JSON.parse(localStorage.getItem('appointment'))
+    this.array = appointment
+  },
 };
 </script>
 
