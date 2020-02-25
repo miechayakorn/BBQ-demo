@@ -10,10 +10,10 @@
       </p>
       <div href="#" class="btn btn-primary">{{ item.time }}</div>
     </div>
-    <div class="card-body">
+    <!-- <div class="card-body">
       <a href="#" class="card-link">ยกเลิก</a>
       <a href="#" class="card-link">เลื่อนนัด</a>
-    </div>
+    </div> -->
   </div>
 </template>
 
