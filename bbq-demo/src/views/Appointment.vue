@@ -1,10 +1,13 @@
 <template>
   <div class="container">
     <div
-      class="mb-2"
-      v-for="(item, index) in array"
-      :key="index"
-    >
+        v-if="this.alertErrorStatus"
+        class="alert alert-secondary"
+        role="alert"
+      >
+        คุณยังไม่มีการจองการนัดหมาย
+      </div>
+    <div class="mb-2" v-for="(item, index) in array" :key="index">
       <CardAppointment :item="item"></CardAppointment>
     </div>
   </div>
@@ -18,13 +21,18 @@ export default {
   },
   data() {
     return {
-      array: []
+      array: [],
+      alertErrorStatus: false
     };
   },
   mounted() {
-    const appointment = JSON.parse(localStorage.getItem('appointment'))
-    this.array = appointment
-  },
+    if (localStorage.getItem("appointment")) {
+      const appointment = JSON.parse(localStorage.getItem("appointment"));
+      this.array = appointment;
+    }else{
+      this.alertErrorStatus = true
+    }
+  }
 };
 </script>
 
